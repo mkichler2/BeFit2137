@@ -39,14 +39,14 @@ namespace BeFit.Controllers
         }
 
         // GET: Typies/Create
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Typies/Create
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "ADMIN")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name")] Typy typy)
@@ -61,7 +61,7 @@ namespace BeFit.Controllers
         }
 
         // GET: Typies/Edit/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -75,7 +75,7 @@ namespace BeFit.Controllers
         }
 
         // POST: Typies/Edit/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "ADMIN")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Typy typy)
@@ -103,7 +103,7 @@ namespace BeFit.Controllers
         }
 
         // GET: Typies/Delete/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -117,7 +117,7 @@ namespace BeFit.Controllers
         }
 
         // POST: Typies/Delete/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "ADMIN")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
