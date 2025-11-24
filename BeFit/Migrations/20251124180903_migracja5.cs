@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace BeFit.Migrations
 {
     /// <inheritdoc />
-    public partial class migracja1 : Migration
+    public partial class migracja5 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -229,7 +231,11 @@ namespace BeFit.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "ADULT_ROLE", "ADULT", "Adult", "ADULT" });
+                values: new object[,]
+                {
+                    { "ADMIN_ROLE", "ADMIN", "Admin", "ADMIN" },
+                    { "ADULT_ROLE", "ADULT", "Adult", "ADULT" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

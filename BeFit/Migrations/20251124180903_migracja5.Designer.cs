@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeFit.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251120182544_migracja1")]
-    partial class migracja1
+    [Migration("20251124180903_migracja5")]
+    partial class migracja5
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -191,6 +191,13 @@ namespace BeFit.Migrations
                             ConcurrencyStamp = "ADULT",
                             Name = "Adult",
                             NormalizedName = "ADULT"
+                        },
+                        new
+                        {
+                            Id = "ADMIN_ROLE",
+                            ConcurrencyStamp = "ADMIN",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
                         });
                 });
 

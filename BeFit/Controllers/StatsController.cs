@@ -1,10 +1,13 @@
 ﻿using BeFit.Data;
 using BeFit.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace BeFit.Controllers
 {
+    [Authorize]
     public class StatsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -14,13 +17,21 @@ namespace BeFit.Controllers
             _context = context;
         }
 
+        private string GetUserId()
+        {
+            return User.FindFirstValue(ClaimTypes.NameIdentifier);
+        }
+
         public async Task<IActionResult> Index()
         {
+            var userId = GetUserId();
             var fourWeeksAgo = DateTime.Now.AddDays(-28);
 
             var stats = await _context.Mix
                 .Include(m => m.Typy)
                 .Include(m => m.Sesje)
+                //FILTROWANIE PO UZYTKOWNIKU NIZEJ JEST
+                .Where(m => m.UserId == userId)                
                 .Where(m => m.Sesje.Start >= fourWeeksAgo)
                 .GroupBy(m => m.Typy.Name)
                 .Select(g => new StatsModel

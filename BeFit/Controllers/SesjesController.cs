@@ -7,9 +7,11 @@ using Microsoft.EntityFrameworkCore;
 using BeFit.Data;
 using BeFit.Models;
 using BeFit.Models.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BeFit.Controllers
 {
+    [Authorize]
     public class SesjesController : Controller
     {
         private readonly ApplicationDbContext _context;

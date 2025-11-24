@@ -21,13 +21,20 @@ namespace BeFit.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<IdentityRole>().HasData(
-                new IdentityRole
-                {
-                    Id = "ADULT_ROLE",
-                    Name = "Adult",
-                    NormalizedName = "ADULT",
-                    ConcurrencyStamp = "ADULT"
-                }
+               new IdentityRole
+               {
+                   Id = "ADULT_ROLE",
+                   Name = "Adult",
+                   NormalizedName = "ADULT",
+                   ConcurrencyStamp = "ADULT"
+               },
+               new IdentityRole
+               {
+               Id = "ADMIN_ROLE",
+               Name = "Admin",
+               NormalizedName = "ADMIN",
+               ConcurrencyStamp = "ADMIN"
+               }
             );
         }
     }

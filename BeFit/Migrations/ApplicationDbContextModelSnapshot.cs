@@ -188,6 +188,13 @@ namespace BeFit.Migrations
                             ConcurrencyStamp = "ADULT",
                             Name = "Adult",
                             NormalizedName = "ADULT"
+                        },
+                        new
+                        {
+                            Id = "ADMIN_ROLE",
+                            ConcurrencyStamp = "ADMIN",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
                         });
                 });
 
