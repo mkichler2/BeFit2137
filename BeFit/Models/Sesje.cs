@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
 namespace BeFit.Models
@@ -12,11 +13,42 @@ namespace BeFit.Models
         public virtual AppUser User { get; set; }
 
         [Required]
-        [Display(Name = "Start treningu")]
+        [Display(Name = "Start time")]
         public DateTime Start { get; set; }
 
         [Required]
-        [Display(Name = "Koniec treningu")]
+        [Display(Name = "End time")]
+        [DateRange("Start", ErrorMessage = "End time cannot be earlier than start time.")]
         public DateTime End { get; set; }
+    }
+
+    // Start <= End
+    public class DateRangeAttribute : ValidationAttribute
+    {
+        private readonly string _startProperty;
+
+        public DateRangeAttribute(string startProperty)
+        {
+            _startProperty = startProperty;
+        }
+
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            var end = (DateTime?)value;
+
+            var startPropertyInfo = validationContext.ObjectType.GetProperty(_startProperty);
+            if (startPropertyInfo == null)
+                return new ValidationResult($"Unknown property: {_startProperty}");
+
+            var startValue = (DateTime?)startPropertyInfo.GetValue(validationContext.ObjectInstance);
+
+            if (!startValue.HasValue || !end.HasValue)
+                return ValidationResult.Success;
+
+            if (startValue > end)
+                return new ValidationResult(ErrorMessage);
+
+            return ValidationResult.Success;
+        }
     }
 }
