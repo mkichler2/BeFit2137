@@ -13,16 +13,16 @@ namespace BeFit.Models
         public virtual AppUser User { get; set; }
 
         [Required]
-        [Display(Name = "Start time")]
+        [Display(Name = "Początek")]
         public DateTime Start { get; set; }
 
         [Required]
-        [Display(Name = "End time")]
-        [DateRange("Start", ErrorMessage = "End time cannot be earlier than start time.")]
+        [Display(Name = "Koniec")]
+        [DateRange("Start", ErrorMessage = "Czas zakończenia nie może być wcześniejszy niż czas rozpoczęcia.")]
         public DateTime End { get; set; }
     }
 
-    // Start <= End
+    // START <= KONIEC
     public class DateRangeAttribute : ValidationAttribute
     {
         private readonly string _startProperty;

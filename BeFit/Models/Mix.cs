@@ -6,28 +6,31 @@ namespace BeFit.Models
     {
         public int Id { get; set; }
 
-        [Display(Name = "Exercise Type")]
+        [Display(Name = "Typ ćwiczeń")]
         public int TypyId { get; set; }
         public virtual Typy? Typy { get; set; }
 
-        [Display(Name = "Training Session")]
+        [Display(Name = "Sesja treningowa")]
         public int SesjeId { get; set; }
         public virtual Sesje? Sesje { get; set; }
 
         [Required]
-        [Display(Name = "Weight (kg)")]
+        [Range(0, 10000)]
+        [Display(Name = "Ciężar (kg)")]
         public float Waga { get; set; }
 
         [Required]
-        [Display(Name = "Series")]
+        [Range(1, 10000)]
+        [Display(Name = "Serie")]
         public int Serie { get; set; }
 
         [Required]
-        [Display(Name = "Reps")]
+        [Range(1, 10000)]
+        [Display(Name = "Powtórzenia")]
         public int Powtorzenia { get; set; }
 
         [Required]
-        [Display(Name = "User")]
+        [Display(Name = "Uzytkownik")]
         public string UserId { get; set; }
         public virtual AppUser User { get; set; }
     }
